@@ -2,8 +2,15 @@ import illustrationImg from "../assets/images/illustration.svg";
 import logoDarkImg from "../assets/images/LogoDark.svg";
 import Button from "../components/Button";
 import { FcGoogle } from "react-icons/fc";
+import { useNavigate } from "react-router-dom";
 
 export function Home() {
+  const navidate = useNavigate();
+
+  function navegateToNewRoom() {
+    navidate("/rooms/new");
+  }
+
   return (
     <div className="dark:bg-slate-800	text-slate-500 md:flex md:flex-row justify-center items-stretch	h-screen">
       <aside className="md:flex-[7] flex justify-center flex-col px-16 py-8 md:py-32 bg-no-repeat	bg-center	 bg-[url(/src/assets/background.svg)] bg-purple-600">
@@ -28,7 +35,10 @@ export function Home() {
         <div className="flex flex-col w-full max-w-xs items-stretch text-center">
           <img src={logoDarkImg} alt="" className="self-center" />
 
-          <button className=" gap-2 p-6 w-full mt-10 h-12 rounded-lg dark:bg-slate-700 border-0 dark:text-white flex justify-center items-center cursor-pointer text-base hover:brightness-90 transition-[filter] duration-200	">
+          <button
+            className="gap-2 p-6 w-full mt-10 h-12 rounded-lg dark:bg-slate-700 border-0 dark:text-white flex justify-center items-center cursor-pointer text-base hover:brightness-90 transition-[filter] duration-200"
+            onClick={navegateToNewRoom}
+          >
             <FcGoogle size={30} />
             Crie sua sala com o Google
           </button>

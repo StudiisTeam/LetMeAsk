@@ -1,6 +1,7 @@
 import illustrationImg from "../assets/images/illustration.svg";
 import Button from "../components/Button";
 import logoDarkImg from "../assets/images/LogoDark.svg";
+import { Link } from "react-router-dom";
 
 export function NewRoom() {
   return (
@@ -40,9 +41,9 @@ export function NewRoom() {
           </form>
           <span>
             Quer entrar em uma sala já existente?
-            <a href="" className="text-purple-500 underline ml-1">
+            <Link to="/" className="text-purple-500 underline ml-1">
               Clique aqui
-            </a>
+            </Link>
           </span>
         </div>
       </main>
