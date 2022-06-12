@@ -1,9 +1,8 @@
 import illustrationImg from "../assets/images/illustration.svg";
-import logoDarkImg from "../assets/images/LogoDark.svg";
 import Button from "../components/Button";
-import { FcGoogle } from "react-icons/fc";
+import logoDarkImg from "../assets/images/LogoDark.svg";
 
-export function Home() {
+export function NewRoom() {
   return (
     <div className="dark:bg-slate-800	text-slate-500 md:flex md:flex-row justify-center items-stretch	h-screen">
       <aside className="md:flex-[7] flex justify-center flex-col px-16 py-8 md:py-32 bg-no-repeat	bg-center	 bg-[url(/src/assets/background.svg)] bg-purple-600">
@@ -27,28 +26,24 @@ export function Home() {
       <main className="md:flex-[8] px-8 pt-6 flex justify-center items-center ">
         <div className="flex flex-col w-full max-w-xs items-stretch text-center">
           <img src={logoDarkImg} alt="" className="self-center" />
-
-          <button className=" gap-2 p-6 w-full mt-10 h-12 rounded-lg dark:bg-slate-700 border-0 dark:text-white flex justify-center items-center cursor-pointer text-base hover:brightness-90 transition-[filter] duration-200	">
-            <FcGoogle size={30} />
-            Crie sua sala com o Google
-          </button>
-
-          <div
-            className="m-6 before:content-[' '] before:flex-1 before:h-[1px] before:bg-[#a8a8b3] before:mr-4
-              after:content-[' '] after:flex-[1] after:h-[1px] after:bg-[#a8a8b3] after:mr-4"
-          >
-            <span>ou entre em uma sala</span>
-          </div>
-
-          <form action="">
+          <h2 className="text-2xl font-sans my-6 text-white">
+            Criar uma nova sala
+          </h2>
+          <form action="" className="mb-4">
             <input
               className="w-full h-12 bg-transparent rounded-lg px-4 border border-slate-700	"
               type="text"
-              placeholder="Digite o codigo da sala"
+              placeholder="Nome da sala"
             />
 
-            <Button type="submit">Entrar na sala</Button>
+            <Button type="submit">Criar sala</Button>
           </form>
+          <span>
+            Quer entrar em uma sala já existente?
+            <a href="" className="text-purple-500 underline ml-1">
+              Clique aqui
+            </a>
+          </span>
         </div>
       </main>
     </div>
