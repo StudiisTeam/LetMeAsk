@@ -2,18 +2,41 @@ import illustrationImg from "../assets/images/illustration.svg";
 import logoDarkImg from "../assets/images/LogoDark.svg";
 import Button from "../components/Button";
 import { FcGoogle } from "react-icons/fc";
+import { FiAlertCircle } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
+import { FormEvent, useState } from "react";
+import { get, ref } from "firebase/database";
+import { database } from "../services/firebase";
 
 export function Home() {
   const navigate = useNavigate();
   const { user, signInWithGoogle } = useAuth();
+  const [roomCode, setRoomCode] = useState("");
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
 
   async function handleCreateRoom() {
     if (!user) {
       await signInWithGoogle();
     }
     navigate("/rooms/new");
+  }
+
+  async function handleJoinRoom(event: FormEvent) {
+    event.preventDefault();
+
+    if (roomCode.trim() === "") {
+      alert("Informe o codigo da sala");
+      return;
+    }
+    const roomRef = await get(ref(database, "rooms/" + roomCode));
+
+    if (!roomRef.exists()) {
+      setShowErrorMessage(true);
+      alert("Codigo da sala incorreto ou inexistente, tente novamente");
+      return;
+    }
+    navigate(`/rooms/${roomCode}`);
   }
 
   return (
@@ -55,11 +78,13 @@ export function Home() {
             <span>ou entre em uma sala</span>
           </div>
 
-          <form action="">
+          <form onSubmit={handleJoinRoom}>
             <input
               className="w-full h-12 bg-transparent rounded-lg px-4 border border-slate-700	dark:text-white"
               type="text"
               placeholder="Digite o codigo da sala"
+              value={roomCode}
+              onChange={(event) => setRoomCode(event.target.value)}
             />
 
             <Button type="submit">Entrar na sala</Button>

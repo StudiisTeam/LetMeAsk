@@ -18,12 +18,12 @@ export function NewRoom() {
     if (newRoom.trim() === "") {
       return;
     }
-    const fireBaseNewRoom = push(ref(database, "rooms/"), {
+    const firebaseNewRoom = push(ref(database, "rooms/"), {
       title: newRoom,
       userId: user?.id,
     });
 
-    navigate(`/rooms/${fireBaseNewRoom.key}`);
+    navigate(`/rooms/${firebaseNewRoom.key}`);
   }
 
   return (
