@@ -5,10 +5,11 @@ import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../contex/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 
 export function Home() {
   const navigate = useNavigate();
-  const { user, signInWithGoogle } = useContext(AuthContext);
+  const { user, signInWithGoogle } = useAuth();
 
   async function handleCreateRoom() {
     if (!user) {

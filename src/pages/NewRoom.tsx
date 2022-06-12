@@ -4,9 +4,11 @@ import logoDarkImg from "../assets/images/LogoDark.svg";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../contex/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 
 export function NewRoom() {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
+
   return (
     <div className="dark:bg-slate-800	text-slate-500 md:flex md:flex-row justify-center items-stretch	h-screen">
       <aside className="md:flex-[7] flex justify-center flex-col px-16 py-8 md:py-32 bg-no-repeat	bg-center	 bg-[url(/src/assets/background.svg)] bg-purple-600">
