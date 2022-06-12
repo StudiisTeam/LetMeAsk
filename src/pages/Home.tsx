@@ -3,8 +3,6 @@ import logoDarkImg from "../assets/images/LogoDark.svg";
 import Button from "../components/Button";
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../contex/AuthContext";
 import { useAuth } from "../hooks/useAuth";
 
 export function Home() {
@@ -52,7 +50,7 @@ export function Home() {
 
           <div
             className="m-6 before:content-[' '] before:flex-1 before:h-[1px] before:bg-[#a8a8b3] before:mr-4
-              after:content-[' '] after:flex-[1] after:h-[1px] after:bg-[#a8a8b3] after:mr-4"
+            after:content-[' '] after:flex-[1] after:h-[1px] after:bg-[#a8a8b3] after:mr-4"
           >
             <span>ou entre em uma sala</span>
           </div>

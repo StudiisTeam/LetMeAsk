@@ -2,8 +2,6 @@ import illustrationImg from "../assets/images/illustration.svg";
 import Button from "../components/Button";
 import logoDarkImg from "../assets/images/LogoDark.svg";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../contex/AuthContext";
 import { useAuth } from "../hooks/useAuth";
 
 export function NewRoom() {
