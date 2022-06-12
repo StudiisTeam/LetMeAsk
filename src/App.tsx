@@ -1,10 +1,13 @@
-import { Home } from "./pages/Home";
-import { NewRoom } from "./pages/NewRoom";
+import { AuthContextProvider } from "./contex/AuthContext";
 import Router from "./routes";
 import "./styles/global.css";
 
 function App() {
-  return <Router />;
+  return (
+    <AuthContextProvider>
+      <Router />
+    </AuthContextProvider>
+  );
 }
 
 export default App;

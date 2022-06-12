@@ -3,12 +3,18 @@ import logoDarkImg from "../assets/images/LogoDark.svg";
 import Button from "../components/Button";
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../contex/AuthContext";
 
 export function Home() {
-  const navidate = useNavigate();
+  const navigate = useNavigate();
+  const { user, signInWithGoogle } = useContext(AuthContext);
 
-  function navegateToNewRoom() {
-    navidate("/rooms/new");
+  async function handleCreateRoom() {
+    if (!user) {
+      await signInWithGoogle();
+    }
+    navigate("/rooms/new");
   }
 
   return (
@@ -37,7 +43,7 @@ export function Home() {
 
           <button
             className="gap-2 p-6 w-full mt-10 h-12 rounded-lg dark:bg-slate-700 border-0 dark:text-white flex justify-center items-center cursor-pointer text-base hover:brightness-90 transition-[filter] duration-200"
-            onClick={navegateToNewRoom}
+            onClick={handleCreateRoom}
           >
             <FcGoogle size={30} />
             Crie sua sala com o Google
