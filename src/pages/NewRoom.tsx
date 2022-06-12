@@ -1,11 +1,30 @@
 import illustrationImg from "../assets/images/illustration.svg";
 import Button from "../components/Button";
 import logoDarkImg from "../assets/images/LogoDark.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
+import { FormEvent, useState } from "react";
+import { database } from "../services/firebase";
+import { push, ref } from "firebase/database";
 
 export function NewRoom() {
   const { user } = useAuth();
+  const [newRoom, setNewRoom] = useState("");
+  const navigate = useNavigate();
+
+  async function handleCreateNewRoom(event: FormEvent) {
+    event.preventDefault();
+
+    if (newRoom.trim() === "") {
+      return;
+    }
+    const fireBaseNewRoom = push(ref(database, "rooms/"), {
+      title: newRoom,
+      userId: user?.id,
+    });
+
+    navigate(`/rooms/${fireBaseNewRoom.key}`);
+  }
 
   return (
     <div className="dark:bg-slate-800	text-slate-500 md:flex md:flex-row justify-center items-stretch	h-screen">
@@ -34,11 +53,13 @@ export function NewRoom() {
           <h2 className="text-2xl font-sans my-6 text-white">
             Criar uma nova sala
           </h2>
-          <form action="" className="mb-4">
+          <form onSubmit={handleCreateNewRoom} className="mb-4">
             <input
-              className="w-full h-12 bg-transparent rounded-lg px-4 border border-slate-700	"
+              className="w-full h-12 bg-transparent rounded-lg px-4 border border-slate-700	dark:text-white"
               type="text"
               placeholder="Nome da sala"
+              onChange={(event) => setNewRoom(event.target.value)}
+              value={newRoom}
             />
 
             <Button type="submit">Criar sala</Button>

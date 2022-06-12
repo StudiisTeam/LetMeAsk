@@ -57,7 +57,7 @@ export function Home() {
 
           <form action="">
             <input
-              className="w-full h-12 bg-transparent rounded-lg px-4 border border-slate-700	"
+              className="w-full h-12 bg-transparent rounded-lg px-4 border border-slate-700	dark:text-white"
               type="text"
               placeholder="Digite o codigo da sala"
             />
