@@ -2,7 +2,6 @@ import illustrationImg from "../assets/images/illustration.svg";
 import logoDarkImg from "../assets/images/LogoDark.svg";
 import Button from "../components/Button";
 import { FcGoogle } from "react-icons/fc";
-import { FiAlertCircle } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { FormEvent, useState } from "react";
@@ -78,7 +77,10 @@ export function Home() {
             <span>ou entre em uma sala</span>
           </div>
 
-          <form onSubmit={handleJoinRoom}>
+          <form
+            className="flex items-stretch flex-col gap-4"
+            onSubmit={handleJoinRoom}
+          >
             <input
               className="w-full h-12 bg-transparent rounded-lg px-4 border border-slate-700	dark:text-white"
               type="text"

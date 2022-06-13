@@ -9,7 +9,7 @@ import { auth } from "../services/firebase";
 type UserProps = {
   id: string;
   name: string;
-  avata: string;
+  avatar: string;
 };
 type AuthContextType = {
   user: UserProps | undefined;
@@ -36,7 +36,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
         setUser({
           id: uid,
           name: displayName,
-          avata: photoURL,
+          avatar: photoURL,
         });
       }
     });
@@ -59,7 +59,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
       setUser({
         id: uid,
         name: displayName,
-        avata: photoURL,
+        avatar: photoURL,
       });
     }
   }

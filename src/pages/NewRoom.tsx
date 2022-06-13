@@ -53,7 +53,10 @@ export function NewRoom() {
           <h2 className="text-2xl font-sans my-6 text-white">
             Criar uma nova sala
           </h2>
-          <form onSubmit={handleCreateNewRoom} className="mb-4">
+          <form
+            onSubmit={handleCreateNewRoom}
+            className="mb-4 flex items-stretch flex-col gap-4"
+          >
             <input
               className="w-full h-12 bg-transparent rounded-lg px-4 border border-slate-700	dark:text-white"
               type="text"

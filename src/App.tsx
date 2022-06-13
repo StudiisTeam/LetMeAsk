@@ -1,4 +1,4 @@
-import { AuthContextProvider } from "./contex/AuthContext";
+import { AuthContextProvider } from "./context/AuthContext";
 import Router from "./routes";
 import "./styles/global.css";
 
