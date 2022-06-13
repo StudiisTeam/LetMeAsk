@@ -1,13 +1,14 @@
-import { onValue, push, ref } from "firebase/database";
-import { FormEvent, useEffect, useState } from "react";
+import { push, ref } from "firebase/database";
+import { FormEvent, useState } from "react";
 import { useParams } from "react-router-dom";
 import logoImage from "../assets/images/LogoDark.svg";
-import Button from "../components/Button";
 import Question from "../components/Question";
 import RoomCode from "../components/RoomCode";
 import { useAuth } from "../hooks/useAuth";
 import { useRoom } from "../hooks/useRoom";
 import { database } from "../services/firebase";
+
+import { AiOutlineLike } from "react-icons/ai";
 
 type RoomProps = {
   id: string;
@@ -16,33 +17,8 @@ type RoomProps = {
 export function AdminRoom() {
   const params = useParams<RoomProps>();
   const roomId = params.id;
-  const { user } = useAuth();
-  const [newQuestion, setNewQuestion] = useState("");
 
   const { questions, title } = useRoom(roomId);
-
-  async function handleSendQuestion(event: FormEvent) {
-    event.preventDefault();
-    if (newQuestion.trim() === "") {
-      return;
-    }
-    if (!user) {
-      throw new Error("You must be logged in");
-    }
-
-    const question = {
-      content: newQuestion,
-      author: {
-        name: user.name,
-        avatar: user.avatar,
-      },
-      isHighlighted: false,
-      isAnswered: false,
-    };
-
-    push(ref(database, `/rooms/${roomId}/questions`), question);
-    setNewQuestion("");
-  }
 
   return (
     <div className="dark:bg-slate-800 dark:text-white ">
@@ -75,7 +51,16 @@ export function AdminRoom() {
                 key={question.id}
                 content={question.content}
                 author={question.author}
-              />
+              >
+                <button
+                  className="flex items-center gap-1"
+                  type="button"
+                  aria-label="marcar como gostei"
+                >
+                  <span>10</span>
+                  <AiOutlineLike size={20} />
+                </button>
+              </Question>
             );
           })}
         </div>

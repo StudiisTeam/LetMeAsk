@@ -1,5 +1,6 @@
-import { onValue, push, ref } from "firebase/database";
+import { push, ref, remove } from "firebase/database";
 import { FormEvent, useEffect, useState } from "react";
+import { AiOutlineLike } from "react-icons/ai";
 import { useParams } from "react-router-dom";
 import logoImage from "../assets/images/LogoDark.svg";
 import Button from "../components/Button";
@@ -44,12 +45,30 @@ export function Room() {
     setNewQuestion("");
   }
 
+  async function handleLikeQuestion(
+    questionId: string,
+    likeId: string | undefined
+  ) {
+    if (likeId) {
+      remove(
+        ref(
+          database,
+          `/rooms/${roomId}/questions/${questionId}/likes/${likeId}`
+        )
+      );
+    } else {
+      push(ref(database, `/rooms/${roomId}/questions/${questionId}/likes`), {
+        authorId: user?.id,
+      });
+    }
+  }
+
   return (
     <div className="dark:bg-slate-800 dark:text-white ">
       <header className="p-6 border-b-[1px] dark:border-slate-700">
         <div className="max-w-6xl mx-auto flex justify-between items-center">
           <img src={logoImage} alt="" className="w-24" />
-          <RoomCode code={roomId} />
+          <RoomCode code={roomId || ""} />
         </div>
       </header>
 
@@ -103,7 +122,23 @@ export function Room() {
                 key={question.id}
                 content={question.content}
                 author={question.author}
-              />
+              >
+                <button
+                  className={
+                    question.likeId
+                      ? "flex items-center gap-1 bg-purple-500 h-9 px-2 rounded-full"
+                      : "flex items-center gap-1 h-9 px-2 rounded-full"
+                  }
+                  type="button"
+                  aria-label="marcar como gostei"
+                  onClick={() =>
+                    handleLikeQuestion(question.id, question.likeId)
+                  }
+                >
+                  {question.likeCount > 0 && <span>{question.likeCount}</span>}
+                  <AiOutlineLike size={23} />
+                </button>
+              </Question>
             );
           })}
         </div>

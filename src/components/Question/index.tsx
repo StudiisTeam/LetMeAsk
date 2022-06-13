@@ -1,11 +1,14 @@
+import { ReactNode } from "react";
+
 type QuestionsProps = {
   content: string;
   author: {
     name: string;
     avatar: string;
   };
+  children: ReactNode;
 };
-function Question({ author, content }: QuestionsProps) {
+function Question({ author, content, children }: QuestionsProps) {
   return (
     <div className="dark:bg-slate-700 rounded-lg shadow-lg p-6 ">
       <p className="text-slate-50">{content}</p>
@@ -18,7 +21,7 @@ function Question({ author, content }: QuestionsProps) {
           />
           <span className="text-slate-400 text-sm">{author.name}</span>
         </div>
-        <div className=""></div>
+        <div className="flex items-center justify-between">{children}</div>
       </footer>
     </div>
   );
