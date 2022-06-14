@@ -4,7 +4,7 @@ import Button from "../components/Button";
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import { get, ref } from "firebase/database";
 import { database } from "../services/firebase";
 
@@ -46,7 +46,7 @@ export function Home() {
   }
 
   return (
-    <div className="dark:bg-slate-800	text-slate-500 md:flex md:flex-row justify-center items-stretch	h-screen">
+    <div className=" bg-slate-100 dark:bg-slate-800  md:flex md:flex-row justify-center items-stretch	h-screen">
       <aside className="md:flex-[7] flex justify-center flex-col px-16 py-8 md:py-32 bg-no-repeat	bg-center	 bg-[url(/src/assets/background.svg)] bg-purple-600">
         <div className="mx-auto">
           <img
@@ -55,11 +55,11 @@ export function Home() {
             className="max-w-xs hidden md:block"
           />
 
-          <strong className="font-bold dark:text-white	font-sans text-4xl mt-4">
+          <strong className="font-bold text-white	font-sans text-4xl mt-4">
             Crie salas de Q&A ao-vivo
           </strong>
 
-          <p className="text-2xl	mt-2 dark:text-slate-100	">
+          <p className="text-2xl	mt-2 text-slate-100	">
             tire duvidas da sua audiencia em tempo real
           </p>
         </div>
@@ -70,7 +70,8 @@ export function Home() {
           <img src={logoDarkImg} alt="" className="self-center" />
 
           <button
-            className="gap-2 p-6 w-full mt-10 h-12 rounded-lg dark:bg-slate-700 border-0 dark:text-white flex justify-center items-center cursor-pointer text-base hover:brightness-90 transition-[filter] duration-200"
+            className="gap-2 p-6 w-full mt-10 h-12 rounded-lg bg-white text-blue-600  border-[1px] border-blue-600 
+            dark:bg-slate-700 dark:text-white dark:border-0 shadow-md font-medium flex justify-center items-center cursor-pointer text-base hover:brightness-90 transition-[filter] duration-200 "
             onClick={handleCreateRoom}
           >
             <FcGoogle size={30} />
@@ -81,7 +82,7 @@ export function Home() {
             className="m-6 before:content-[' '] before:flex-1 before:h-[1px] before:bg-[#a8a8b3] before:mr-4
             after:content-[' '] after:flex-[1] after:h-[1px] after:bg-[#a8a8b3] after:mr-4"
           >
-            <span>ou entre em uma sala</span>
+            <span className="text-slate-400">ou entre em uma sala</span>
           </div>
 
           <form
@@ -89,7 +90,7 @@ export function Home() {
             onSubmit={handleJoinRoom}
           >
             <input
-              className="w-full h-12 bg-transparent rounded-lg px-4 border border-slate-700	dark:text-white"
+              className="w-full h-12 bg-transparent rounded-lg px-4 border border-slate-300	dark:text-white dark:border-slate-700"
               type="text"
               placeholder="Digite o codigo da sala"
               value={roomCode}

@@ -18,7 +18,7 @@ function RoomCode(props: RoomCodeProps) {
       className="bg-transparent border-[1px] h-11 pr-4 items-center border-purple-600 flex gap-4 rounded-lg"
     >
       <div className="h-full flex justify-center items-center w-12 bg-purple-600">
-        <BiCopy size={20} />
+        <BiCopy size={20} className="text-white" />
         <Toaster />
       </div>
       Sala {props.code}

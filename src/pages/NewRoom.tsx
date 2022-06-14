@@ -25,9 +25,9 @@ export function NewRoom() {
 
     navigate(`/admin/rooms/${firebaseNewRoom.key}`);
   }
-
+  //dark:bg-slate-800 bg-slate-50	text-slate-500 md:flex md:flex-row justify-center items-stretch	h-screen
   return (
-    <div className="dark:bg-slate-800	text-slate-500 md:flex md:flex-row justify-center items-stretch	h-screen">
+    <div className="dark:bg-slate-800 dark:text-slate-500 bg-slate-50 md:flex md:flex-row justify-center items-stretch	h-screen">
       <aside className="md:flex-[7] flex justify-center flex-col px-16 py-8 md:py-32 bg-no-repeat	bg-center	 bg-[url(/src/assets/background.svg)] bg-purple-600">
         <div className="mx-auto">
           <img
@@ -35,11 +35,11 @@ export function NewRoom() {
             alt="ilustracao simbolizando perguntas e respostas"
             className="max-w-xs hidden md:block"
           />
-          <strong className="font-bold dark:text-white	font-sans text-4xl mt-4">
+          <strong className="font-bold text-white	font-sans text-4xl mt-4">
             Crie salas de Q&A ao-vivo
           </strong>
 
-          <p className="text-2xl	mt-2 dark:text-slate-100	">
+          <p className="text-2xl	mt-2 text-slate-100	">
             tire duvidas da sua audiencia em tempo real
           </p>
         </div>
@@ -49,8 +49,8 @@ export function NewRoom() {
         <div className="flex flex-col w-full max-w-xs items-stretch text-center">
           <img src={logoDarkImg} alt="" className="self-center" />
 
-          <h1>Seja bem-vindo(a) {user?.name}</h1>
-          <h2 className="text-2xl font-sans my-6 text-white">
+          <h1 className="mt-4">Seja bem-vindo(a) {user?.name}</h1>
+          <h2 className="text-2xl font-medium font-sans my-6 dark:text-white">
             Criar uma nova sala
           </h2>
           <form
@@ -58,7 +58,7 @@ export function NewRoom() {
             className="mb-4 flex items-stretch flex-col gap-4"
           >
             <input
-              className="w-full h-12 bg-transparent rounded-lg px-4 border border-slate-700	dark:text-white"
+              className="w-full h-12 bg-transparent rounded-lg px-4 border border-slate-300 dark:border-slate-700	dark:text-white"
               type="text"
               placeholder="Nome da sala"
               onChange={(event) => setNewRoom(event.target.value)}

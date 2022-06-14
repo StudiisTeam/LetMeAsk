@@ -2,12 +2,17 @@ import { push, ref, remove } from "firebase/database";
 import { FormEvent, useEffect, useState } from "react";
 import { AiOutlineLike } from "react-icons/ai";
 import { useNavigate, useParams } from "react-router-dom";
+
 import logoImage from "../assets/images/LogoDark.svg";
+import emptyQuestions from "../assets/images/empty-questions.svg";
+
 import Button from "../components/Button";
 import Question from "../components/Question";
 import RoomCode from "../components/RoomCode";
+
 import { useAuth } from "../hooks/useAuth";
 import { useRoom } from "../hooks/useRoom";
+
 import { database } from "../services/firebase";
 
 type RoomProps = {
@@ -69,11 +74,12 @@ export function Room() {
       });
     }
   }
+  console.log(questions.length);
 
   return (
-    <div className="dark:bg-slate-800 dark:text-white ">
-      <header className="p-6 border-b-[1px] dark:border-slate-700">
-        <div className="max-w-6xl mx-auto flex justify-between items-center">
+    <div className="dark:bg-slate-800 bg-slate-50 dark:text-white ">
+      <header className="p-6 border-b-[1px] border-slate-200 dark:border-slate-700">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-4  justify-between items-center">
           <img src={logoImage} alt="" className="w-24" />
           <RoomCode code={roomId || ""} />
         </div>
@@ -81,9 +87,9 @@ export function Room() {
 
       <main className="max-w-4xl md:mx-auto p-8">
         <div className="mt-8 mb-6 flex items-center gap-4 ">
-          <h1 className="font-sans text-2xl">Sala {title}</h1>
+          <h1 className="font-sans font-semibold text-2xl">Sala {title}</h1>
           {questions.length > 0 && (
-            <span className="bg-purple-600 rounded-full px-4 py-2 font-medium	text-sm">
+            <span className="bg-purple-600 text-white  rounded-full px-4 py-2 font-medium	text-sm">
               {questions.length} pergunta(s)
             </span>
           )}
@@ -118,42 +124,57 @@ export function Room() {
                 </button>
               </span>
             )}
-            <Button type="submit">Enviar pergunta?</Button>
+            <Button type="submit">Enviar pergunta</Button>
           </div>
         </form>
 
-        <div className="flex  flex-col gap-4 mt-8 ">
-          {questions.map((question) => {
-            return (
-              <Question
-                key={question.id}
-                content={question.content}
-                author={question.author}
-                isAnswered={question.isAnswered}
-                isHighlighted={question.isHighlighted}
-              >
-                {!question.isAnswered && (
-                  <button
-                    className={
-                      question.likeId
-                        ? "flex items-center gap-1 bg-purple-500 h-9 px-2 rounded-full"
-                        : "flex items-center gap-1 h-9 px-2 rounded-full"
-                    }
-                    type="button"
-                    aria-label="marcar como gostei"
-                    onClick={() =>
-                      handleLikeQuestion(question.id, question.likeId)
-                    }
-                  >
-                    {question.likeCount > 0 && (
-                      <span>{question.likeCount}</span>
-                    )}
-                    <AiOutlineLike size={23} />
-                  </button>
-                )}
-              </Question>
-            );
-          })}
+        <div className="flex flex-col gap-4 mt-8 ">
+          {questions.length != 0 ? (
+            questions.map((question) => {
+              return (
+                <Question
+                  key={question.id}
+                  content={question.content}
+                  author={question.author}
+                  isAnswered={question.isAnswered}
+                  isHighlighted={question.isHighlighted}
+                >
+                  {!question.isAnswered && (
+                    <button
+                      className={
+                        question.likeId
+                          ? "flex items-center gap-1 bg-purple-500 h-9 px-2 rounded-full"
+                          : "flex items-center gap-1 h-9 px-2 rounded-full"
+                      }
+                      type="button"
+                      aria-label="marcar como gostei"
+                      onClick={() =>
+                        handleLikeQuestion(question.id, question.likeId)
+                      }
+                    >
+                      {question.likeCount > 0 && (
+                        <span>{question.likeCount}</span>
+                      )}
+                      <AiOutlineLike size={23} />
+                    </button>
+                  )}
+                </Question>
+              );
+            })
+          ) : (
+            <div className="flex mt-8 gap-6 flex-col items-center justify-center">
+              <img src={emptyQuestions} alt="" className="max-w-lg" />
+              <div className="flex gap-1 flex-col items-center justify-center">
+                <h1 className="text-2xl text-slate-500 font-medium">
+                  Nenhuma pergunta por aqui...
+                </h1>
+                <span className="text-lg text-slate-400 text-center">
+                  Envie o código desta sala para seus amigos e comece a
+                  responder perguntas!
+                </span>
+              </div>
+            </div>
+          )}
         </div>
       </main>
     </div>

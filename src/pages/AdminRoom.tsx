@@ -57,8 +57,8 @@ export function AdminRoom() {
   }
 
   return (
-    <div className="dark:bg-slate-800 dark:text-white ">
-      <header className="p-6 border-b-[1px] dark:border-slate-700">
+    <div className="dark:bg-slate-800 bg-slate-50 dark:text-white ">
+      <header className="p-6 border-b-[1px] border-slate-200 dark:border-slate-700">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-4  justify-between items-center">
           <img src={logoImage} alt="" className="w-24" />
           <div className="flex flex-col md:flex-row gap-2">
@@ -77,7 +77,7 @@ export function AdminRoom() {
         <div className="mt-8 mb-6 flex items-center gap-4 ">
           <h1 className="font-sans text-2xl">Sala {title}</h1>
           {questions.length > 0 && (
-            <span className="bg-purple-600 rounded-full px-4 py-2 font-medium text-center	text-sm">
+            <span className="bg-purple-600 text-white rounded-full px-4 py-2 font-medium text-center	text-sm">
               {questions.length} pergunta(s)
             </span>
           )}

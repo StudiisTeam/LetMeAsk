@@ -21,12 +21,12 @@ function Question({
   return (
     <div
       className={classnames(
-        "dark:bg-slate-700 rounded-lg shadow-lg p-6",
-        { "opacity-30 border-0": isAnswered },
+        "dark:bg-slate-700  rounded-lg shadow-lg p-6",
+        { "dark:opacity-30 opacity-40 border-0": isAnswered },
         { "border-[1px] border-purple-500": isHighlighted }
       )}
     >
-      <p className="text-slate-50">{content}</p>
+      <p className="dark:text-slate-50">{content}</p>
       <footer className="flex justify-between mt-6 items-center">
         <div className="flex items-center gap-2">
           <img
