@@ -93,7 +93,7 @@ export function Room() {
           <textarea
             name=""
             id=""
-            placeholder="O que voce quer perguntar"
+            placeholder="O que voce quer pergunta?"
             className="w-full border-0 p-4 rounded-lg dark:bg-slate-900 shadow-lg resize-y min-h-[130px]"
             value={newQuestion}
             onChange={(event) => setNewQuestion(event.target.value)}
@@ -112,7 +112,7 @@ export function Room() {
               </div>
             ) : (
               <span className="text-sm flex md:gap-2 flex-col md:flex-row items-start text-slate-400 font-medium ">
-                para enciar uma pergunta{" "}
+                para enviar uma pergunta{" "}
                 <button className="text-purple-600 underline text-sm font-medium">
                   Faca seu login
                 </button>
