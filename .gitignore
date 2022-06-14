@@ -10,7 +10,7 @@ node_modules
 dist
 dist-ssr
 *.local
-
+.firebase
 database.rules.json
 # Editor directories and files
 .vscode/*
