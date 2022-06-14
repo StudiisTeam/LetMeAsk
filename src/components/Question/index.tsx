@@ -18,8 +18,6 @@ function Question({
   isAnswered = false,
   isHighlighted = false,
 }: QuestionsProps) {
-  console.log(isHighlighted);
-
   return (
     <div
       className={classnames(
