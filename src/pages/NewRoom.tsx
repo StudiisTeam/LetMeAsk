@@ -23,7 +23,7 @@ export function NewRoom() {
       userId: user?.id,
     });
 
-    navigate(`/rooms/${firebaseNewRoom.key}`);
+    navigate(`/admin/rooms/${firebaseNewRoom.key}`);
   }
 
   return (

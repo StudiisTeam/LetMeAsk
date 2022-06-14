@@ -1,7 +1,7 @@
 import { push, ref, remove } from "firebase/database";
 import { FormEvent, useEffect, useState } from "react";
 import { AiOutlineLike } from "react-icons/ai";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import logoImage from "../assets/images/LogoDark.svg";
 import Button from "../components/Button";
 import Question from "../components/Question";
@@ -16,11 +16,18 @@ type RoomProps = {
 
 export function Room() {
   const params = useParams<RoomProps>();
+  const navigate = useNavigate();
   const roomId = params.id;
   const { user } = useAuth();
   const [newQuestion, setNewQuestion] = useState("");
 
-  const { questions, title } = useRoom(roomId);
+  const { questions, title, closedAt } = useRoom(roomId);
+
+  useEffect(() => {
+    if (closedAt) {
+      navigate("/");
+    }
+  }, [closedAt]);
 
   async function handleSendQuestion(event: FormEvent) {
     event.preventDefault();
@@ -122,22 +129,28 @@ export function Room() {
                 key={question.id}
                 content={question.content}
                 author={question.author}
+                isAnswered={question.isAnswered}
+                isHighlighted={question.isHighlighted}
               >
-                <button
-                  className={
-                    question.likeId
-                      ? "flex items-center gap-1 bg-purple-500 h-9 px-2 rounded-full"
-                      : "flex items-center gap-1 h-9 px-2 rounded-full"
-                  }
-                  type="button"
-                  aria-label="marcar como gostei"
-                  onClick={() =>
-                    handleLikeQuestion(question.id, question.likeId)
-                  }
-                >
-                  {question.likeCount > 0 && <span>{question.likeCount}</span>}
-                  <AiOutlineLike size={23} />
-                </button>
+                {!question.isAnswered && (
+                  <button
+                    className={
+                      question.likeId
+                        ? "flex items-center gap-1 bg-purple-500 h-9 px-2 rounded-full"
+                        : "flex items-center gap-1 h-9 px-2 rounded-full"
+                    }
+                    type="button"
+                    aria-label="marcar como gostei"
+                    onClick={() =>
+                      handleLikeQuestion(question.id, question.likeId)
+                    }
+                  >
+                    {question.likeCount > 0 && (
+                      <span>{question.likeCount}</span>
+                    )}
+                    <AiOutlineLike size={23} />
+                  </button>
+                )}
               </Question>
             );
           })}

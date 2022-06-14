@@ -4,7 +4,7 @@ import Button from "../components/Button";
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { get, ref } from "firebase/database";
 import { database } from "../services/firebase";
 
@@ -33,6 +33,13 @@ export function Home() {
     if (!roomRef.exists()) {
       setShowErrorMessage(true);
       alert("Codigo da sala incorreto ou inexistente, tente novamente");
+      return;
+    }
+
+    if (roomRef.val().closedAt) {
+      alert(
+        "A sala ja foi encerrada!! Por favor, crie uma ou entre em outra Sala"
+      );
       return;
     }
     navigate(`/rooms/${roomCode}`);

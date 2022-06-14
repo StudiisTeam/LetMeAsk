@@ -35,6 +35,7 @@ type FirebaseQuestions = Record<
 export function useRoom(roomId: string | undefined) {
   const { user } = useAuth()
   const [title, setTitle] = useState("");
+  const [closedAt, setClosedAt] = useState(null);
   const [questions, setQuestions] = useState<QuestionsProps[]>([]);
 
 
@@ -45,8 +46,6 @@ export function useRoom(roomId: string | undefined) {
 
       const parsedQuestions = Object.entries(firebaseQuestions).map(
         ([key, value]) => {
-          console.log(Object.entries(value.likes ?? {}).find(([key, like]) => like.authorId === user?.id)?.[0])
-
           return {
             id: key,
             content: value.content,
@@ -58,6 +57,9 @@ export function useRoom(roomId: string | undefined) {
           };
         }
       );
+      if (databaseRoom.closedAt) {
+        setClosedAt(databaseRoom.closedAt)
+      }
       setTitle(databaseRoom.title);
       setQuestions(parsedQuestions);
     });
@@ -66,5 +68,5 @@ export function useRoom(roomId: string | undefined) {
     }
   }, [roomId, user?.id]);
 
-  return { questions, title }
+  return { questions, title, closedAt }
 }
