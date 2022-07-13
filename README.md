@@ -19,14 +19,16 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - [React](https://reactjs.org)
 - [Firebase](https://firebase.google.com/)
 - [TypeScript](https://www.typescriptlang.org/)
+- [Tailwindcss](https://tailwindcss.com/)
+
 
 ## 🚀 Como executar
 
 Clone o projeto e acesse a pasta do mesmo.
 
 ```bash
-$ git clone https://github.com/rocketseat-education/nlw-06-reactjs
-$ cd nlw-06-reactjs
+$ git clone https://github.com/MatheusFontenele/letMeAsk
+$ cd letmeask
 ```
 
 Para iniciá-lo, siga os passos abaixo:
@@ -39,7 +41,7 @@ $ yarn start
 ```
 O app estará disponível no seu browser pelo endereço http://localhost:3000.
 
-Lembrando que será necessário criar uma conta no [Firebase](https://firebase.google.com/) e um projeto para disponibilizar um Realtime Database.
+Lembrando que será necessário criar uma conta no [Firebase](https://firebase.google.com/) um projeto para disponibilizar um Realtime Database e as chaves de acesso.
 
 ## 💻 Projeto
 
