@@ -10,10 +10,6 @@
   <img  src="https://img.shields.io/static/v1?label=license&message=MIT&color=8257E5&labelColor=000000" alt="License">   
 </p>
 
-<h1 align="center">
-    <img alt="Letmeask" src=".github/cover.svg" />
-</h1>
-
 <br>
 
 ## 🧪 Tecnologias
@@ -51,8 +47,26 @@ Letmeask é perfeito para criadores de conteúdos poderem criar salas de Q&A com
 
 Este é um projeto desenvolvido durante a **[Next Level Week Together](https://nextlevelweek.com/)**, apresentada dos dias 20 a 27 de Junho de 2021.
 
-
 ## 🔖 Layout
+
+### Login page
+<p align="center">
+  <img alt="Letmeask home" src=".github/loginpage.png" width="750px">
+</p>
+
+### Home page
+<p align="center">
+  <img alt="Letmeask home" src=".github/home.png" width="750px">
+</p>
+
+<p align="center">
+  <img alt="Letmeask home" src=".github/homewithquestion.png" width="750px">
+</p>
+
+### Home admin page
+<p align="center">
+  <img alt="Letmeask home" src=".github/homeadmin.png" width="750px">
+</p>
 
 Você pode visualizar o layout do projeto através do link abaixo:
 
