@@ -70,6 +70,5 @@ Você pode visualizar o layout do projeto através do link abaixo:
 
 - [Layout Web](https://www.figma.com/community/file/1009824839797878169/Letmeask) 
 
-Lembrando que você precisa ter uma conta no [Figma](http://figma.com/).
 
 Feito com 💜 by Matheus 👋🏻
